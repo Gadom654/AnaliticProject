@@ -1,0 +1,51 @@
+#Calculating P/E of 4 years + 1 Quater
+
+class stock():
+	"""docstring for stock"""
+	def __init__(self, name, mc, e18, e19, e20, e21, e22Q1):
+		super(stock, self).__init__()
+		self.name = name
+		self.marketcap = mc
+		self.earnings2018 = e18
+		self.earnings2019 = e19
+		self.earnings2020 = e20
+		self.earnings2021 = e21
+		self.earningsQ12022 = e22Q1
+		self.PE = stock.calcPE(self)
+
+	def calcPE(self):
+		PE = self.marketcap/(self.earnings2018+self.earnings2019+
+			self.earnings2020+self.earnings2021+self.earningsQ12022)
+		return(PE)
+	def printPE(self):
+		print(self.name, self.PE)
+
+
+if __name__ == '__main__':
+	Airbnb = stock("Airbnb", 100.35, -0.01686, -0.67434, -4.58, -0.35203, 0)
+	Alibaba = stock("Alibaba", 235.685, 64.09, 87.89, 149.43, 150.58, 0)
+	Google = stock("Google", 1629 ,30.74, 34.34, 40.27, 76.03, 0)
+	Amazon = stock("Amazon", 1486, 10.07, 11.58, 21.33, 33.36, 0)
+	AmericanAirlines = stock("American Airlines", 12.98, 1.41, 1.69, -8.88, -1.99, 0)
+	Apple = stock("Apple", 2658, 59.53, 55.26, 57.41, 94.68, 0)
+	ATAT = stock("AT&T", 139.7, 19.37, 13.9, -5.18, 20.08, 0)
+	Berk = stock("Berkshire", 745.846, 4.02, 81.42, 42.52, 89.8, 0)
+	Book = stock("Booking", 91.835, 4, 4.87, 0.059, 1.17, 0)
+	BP = stock("BP", 100.26, 9.38, 4.03, -20.3, 7.57, 0)
+	Cat = stock("Caterpillar", 116.127, 6.15, 6.09, 3, 6.49, 0)
+	Dior = stock("Christian Dior", 106.262, 2.26, 2.57, 2.94, 1.93, 1.08)
+	Ford = stock("Ford", 61.046, 3.68, 0.047, -1.28, 17.94, 0)
+	Airbnb.printPE()
+	Alibaba.printPE()
+	Google.printPE()
+	Amazon.printPE()
+	AmericanAirlines.printPE()
+	Apple.printPE()
+	ATAT.printPE()
+	Berk.printPE()
+	Book.printPE()
+	BP.printPE()
+	Cat.printPE()
+	Dior.printPE()
+	Ford.printPE()
+
