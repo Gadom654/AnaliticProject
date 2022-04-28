@@ -1,3 +1,5 @@
+import operator
+
 #Calculating P/E of 4 years + 1 Quater
 
 class stock():
@@ -17,9 +19,25 @@ class stock():
 		PE = self.marketcap/(self.earnings2018+self.earnings2019+
 			self.earnings2020+self.earnings2021+self.earningsQ12022)
 		return(PE)
+
+	def calcChinaStock(self):
+		self.earnings2018 = self.earnings2018 * 0.15
+		self.earnings2019 = self.earnings2019 * 0.15
+		self.earnings2020 = self.earnings2020 * 0.15
+		self.earnings2021 = self.earnings2021 * 0.15
+		self.earningsQ12022 = self.earningsQ12022 * 0.15
+		self.PE = stock.calcPE(self)
+
+	def calcJapStock(self):
+		self.earnings2018 *= 0.0076
+		self.earnings2019 *= 0.0076
+		self.earnings2020 *= 0.0076
+		self.earnings2021 *= 0.0076
+		self.earningsQ12022 *= 0.0076
+		self.PE = stock.calcPE(self)
+
 	def printPE(self):
 		print(self.name, self.PE)
-
 
 if __name__ == '__main__':
 	Airbnb = stock("Airbnb", 100.35, -0.01686, -0.67434, -4.58, -0.35203, 0)
@@ -34,18 +52,47 @@ if __name__ == '__main__':
 	BP = stock("BP", 100.26, 9.38, 4.03, -20.3, 7.57, 0)
 	Cat = stock("Caterpillar", 116.127, 6.15, 6.09, 3, 6.49, 0)
 	Dior = stock("Christian Dior", 106.262, 2.26, 2.57, 2.94, 1.93, 1.08)
+	Cola = stock("Coca cola", 283.181, 6.43, 8.92, 7.75, 9.77, 0)
+	Deere = stock("Deere", 118.274, 2.37, 3.25, 2.75, 5.96, 0)
+	Delta = stock("Delta air lines", 27.637, 3.94, 4.77, -12.38, 0.28, 0)
+	Lufthansa = stock("Lufthansa", 8.564, 2.16, 1.21, -6.72, -2.19, 0)
 	Ford = stock("Ford", 61.046, 3.68, 0.047, -1.28, 17.94, 0)
-	Airbnb.printPE()
-	Alibaba.printPE()
-	Google.printPE()
-	Amazon.printPE()
-	AmericanAirlines.printPE()
-	Apple.printPE()
-	ATAT.printPE()
-	Berk.printPE()
-	Book.printPE()
-	BP.printPE()
-	Cat.printPE()
-	Dior.printPE()
-	Ford.printPE()
-
+	Heineken = stock("Heineken", 53.473, 1.91, 2.17, -0.204, 3.32, 0)
+	HomeDepot = stock("Home Depot", 311.664, 11.12, 11.24, 12.87, 16.43, 0)
+	Intel = stock("Intel", 184.891, 21.05, 21.05, 20.9, 19.87, 0)
+	JD = stock("JD", 97.021, -2.49, 12.18, 49.41, -3.56, 0)
+	Kirk = stock("Kirklands", 86.319, 3.78, -53.27, 16.64, 22.03, 0)
+	OR = stock("Loreal", 185.929, 3.9, 3.75, 3.56, 4.6, 0)
+	MC = stock("LVMH", 312.558, 6.35, 7.17, 4.7, 12.04, 0)
+	MAR = stock("Mariot", 58.971, 1.91, 1.27, -0.267, 1.1, 0)
+	MCD = stock("Macdonald", 182.786, 5.92, 6.03, 4.73, 7.55, 0)
+	FB = stock("Meta", 474.907, 22.11, 18.48, 29.15, 39.37, 0)
+	MSFT = stock("Microsoft", 2123, 16.57, 39.24, 44.28, 61.27, 0)
+	QCOM = stock("Qualcom", 152.258, -4.96, 4.39, 5.2, 9.04, 0)
+	RYAAY = stock("Ryanair", 20.233, 1.45, 0.885, 0.6487, -1.02, 0)
+	SAP = stock("SAP", 117.404, 4.08, 3.32, 5.14, 5.26, 0)
+	LUV = stock("Southwest Airlines", 27.235, 2.46, 2.3, -3.07, 0.977, 0)
+	TCEHY = stock("Tencent", 409.297, 78.72, 93.31, 159.85, 224.82, 0)
+	TM = stock("Toyota", 236.825, 2495, 1880, 2040, 2250, 0)
+	V = stock("Visa", 463.664, 10.3, 12.08, 10.87, 12.31, 0)
+	VOW3 = stock("Volksvagen", 92.964, 12.14, 13.89, 8.87, 15.38, 0)
+	WMT = stock("Walmart", 424.589, 6.67, 14.88, 13.51, 13.67, 0)
+	TM.calcJapStock()
+	Alibaba.calcChinaStock()
+	TCEHY.calcChinaStock()
+	JD.calcChinaStock()
+	stocks = [Airbnb, Alibaba, Google, Amazon, AmericanAirlines, Apple, ATAT, Berk,
+	Book, BP, Cat, Dior, Cola, Deere, Delta, Lufthansa, Ford, Heineken, HomeDepot,
+	Intel, JD, Kirk, OR, MC, MAR, MCD, FB, MSFT, QCOM, RYAAY, SAP, LUV, TCEHY, TM,
+	V, VOW3, WMT]
+	sortedStocks = sorted(stocks, key = lambda stock: stock.PE)
+	sortedStocks.remove(Airbnb)
+	sortedStocks.remove(BP)
+	sortedStocks.remove(Amazon)
+	sortedStocks.remove(MAR)
+	sortedStocks.remove(MSFT)
+	sortedStocks.remove(OR)
+	sortedStocks.remove(V)
+	sortedStocks.remove(WMT)
+	for x in sortedStocks:
+		x.printPE()
